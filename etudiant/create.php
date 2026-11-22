@@ -9,9 +9,9 @@ if(isset($_POST["Ajouter"])){
     $nom=$_POST["nom"];
     $prenom=$_POST["prenom"];
     $id_formation=$_POST["id_formation"];
-    $sql="INSERT INTO formation(nom,prenom,id_formation) VALUES (:nom, :prenom, :id_formation)";
+    $sql="INSERT INTO etudiant(nom,prenom,id_formation) VALUES (:nom, :prenom, :id_formation)";
     $stmt=$pdo->prepare($sql);
-    $stmt->execute([":name"=> $nom, ":prenom"=> $prenom, "id_formation"=>$id_formation]);
+    $stmt->execute([":nom"=> $nom, ":prenom"=> $prenom, "id_formation"=>$id_formation]);
     header("location:index.php");
     exit();
 }

@@ -4,7 +4,7 @@ require_once "../database/connexion.php";
 
 $sql = "SELECT module.*, formation.nom_formation
         FROM module
-        JOIN formation
+        LEFT JOIN formation
         ON module.id_formation = formation.id_formation";
 
 $stmt = $pdo->query($sql);
@@ -39,7 +39,14 @@ $modules = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <td><?php echo htmlspecialchars($module["coefficient"]); ?></td>
 
-            <td><?php echo htmlspecialchars($module["nom_formation"]); ?></td>
+            
+            <td>
+    <?php
+    echo htmlspecialchars(
+        $module["nom_formation"] ?? "Aucune formation"
+    );
+    ?>
+</td>
 
             <td>
                 <a href="edit.php?id=<?php echo $module["id_module"]; ?>">Modifier</a>
